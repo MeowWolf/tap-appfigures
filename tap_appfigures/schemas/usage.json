@@ -3,7 +3,20 @@
         "null",
         "object"
     ],
-    "additional_properties": {
+    "additional_properties": false,
+    "properties": {
+        "crashes": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "sessions": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
         "active_users": {
             "type": [
                 "null",
@@ -81,20 +94,13 @@
                 "null",
                 "integer"
             ]
-        }
-    },
-    "properties": {
-        "crashes": {
-            "type": [
-                "null",
-                "integer"
-            ]
         },
-        "sessions": {
+        "date": {
             "type": [
                 "null",
-                "integer"
-            ]
+                "string"
+            ],
+            "format": "date-time"
         }
     }
 }

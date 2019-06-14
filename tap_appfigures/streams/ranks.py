@@ -6,6 +6,10 @@ from tap_appfigures.streams.base import AppFiguresBase, Record
 from tap_appfigures.utils import date_to_str
 
 
+class RankRecord(Record):
+    INT_FIELDS = ['category__device_id', 'category__id', 'category__parent_id', 'product_id', 'position', 'delta']
+
+
 class RanksStream(AppFiguresBase):
     STREAM_NAME = 'ranks'
     KEY_PROPERTIES = ['product_id', 'country', 'category', 'date']
@@ -31,14 +35,17 @@ class RanksStream(AppFiguresBase):
             with singer.metrics.Counter('record_count', {'endpoint': 'ranks'}) as counter:
                 for rank_entry in rank_data:
                     for i, rank_date in enumerate(rank_dates):
-                        record = Record(dict(
-                            country=rank_entry['country'],
-                            category=rank_entry['category'],
-                            product_id=rank_entry['product_id'],
-                            position=rank_entry['positions'][i],
-                            delta=rank_entry['deltas'][i],
-                            date=rank_date,
-                        ))
+                        record = RankRecord(
+                            dict(
+                                country=rank_entry['country'],
+                                category=rank_entry['category'],
+                                product_id=rank_entry['product_id'],
+                                position=rank_entry['positions'][i],
+                                delta=rank_entry['deltas'][i],
+                                date=rank_date,
+                            ),
+                            self.schema
+                        )
 
                         new_bookmark_date = max(new_bookmark_date, record.bookmark)
                         singer.write_message(singer.RecordMessage(

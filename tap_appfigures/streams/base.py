@@ -7,7 +7,7 @@ from copy import deepcopy
 
 import singer
 
-from tap_appfigures.utils import str_to_date, strings_to_floats, RequestError, dates_to_str, date_to_str
+from tap_appfigures.utils import str_to_date, RequestError, dates_to_str, date_to_str
 
 
 def stream_details_from_catalog(catalog, stream_name):
@@ -26,16 +26,18 @@ class Record:
     """
     DATE_FIELDS = ['date']
 
-    def __init__(self, raw_data):
+    def __init__(self, raw_data, schema):
         self.raw_data = raw_data
+        self.schema = schema
         self.clean_data = self.create_clean_data(raw_data)
         self.for_export = dates_to_str(self.clean_data)
 
     def create_clean_data(self, raw_data):
-        clean_data = deepcopy(raw_data)
-        clean_data = strings_to_floats(clean_data)
+        clean_data = singer.transform(data=raw_data, schema=self.schema)
+
         for date_field in self.DATE_FIELDS:
             clean_data[date_field] = str_to_date(clean_data[date_field])
+
         return clean_data
 
     @property
@@ -126,7 +128,7 @@ class AppFiguresBase:
 
         with singer.metrics.Counter('record_count', {'endpoint': self.STREAM_NAME}) as counter:
             for entry in self.traverse_nested_dicts(response.json(), self.RESPONSE_LEVELS):
-                record = self.RECORD_CLASS(entry)
+                record = self.RECORD_CLASS(entry, self.schema)
                 new_bookmark_date = max(new_bookmark_date, record.bookmark)
                 singer.write_message(singer.RecordMessage(
                     stream=self.STREAM_NAME,

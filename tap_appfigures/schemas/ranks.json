@@ -15,7 +15,41 @@
             "type": [
                 "null",
                 "object"
-            ]
+            ],
+            "properties": {
+                "store_id": [
+                    "null",
+                    "integer"
+                ],
+                "device": [
+                    "null",
+                    "string"
+                ],
+                "device_id": [
+                    "null",
+                    "integer"
+                ],
+                "name": [
+                    "string",
+                    "null"
+                ],
+                "subtype": [
+                    "string",
+                    "null"
+                ],
+                "id": [
+                    "null",
+                    "integer"
+                ],
+                "parent_id": [
+                    "null",
+                    "integer"
+                ],
+                "parent": [
+                    "null",
+                    "string"
+                ]
+            }
         },
         "product_id": {
             "type": [
@@ -34,6 +68,13 @@
                 "null",
                 "integer"
             ]
+        },
+        "date": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
         }
     }
 }

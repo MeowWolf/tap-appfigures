@@ -6,10 +6,10 @@ from .usage import UsageStream
 from .ranks import RanksStream
 
 AVAILABLE_STREAMS = [
-    ProductsStream,
-    SalesStream,
-    RevenueStream,
+    # ProductsStream,
+    # SalesStream,
+    # RevenueStream,
     RatingsStream,
-    UsageStream,
-    RanksStream,
+    # UsageStream,
+    # RanksStream,
 ]

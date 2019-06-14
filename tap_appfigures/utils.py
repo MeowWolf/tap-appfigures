@@ -28,27 +28,27 @@ def date_to_str(value):
     return value.strftime("%Y-%m-%d %H:%M:%S%z")
 
 
-def strings_to_floats(row_dict):
-    """
-    Some imported rows contain floats represented as strings
-    e.g. "0.00"
-    Convert all of these to actual floats
-    """
-    result = copy.copy(row_dict)
-    for key, value in result.items():
-        if isinstance(value, str):
-            try:
-                result[key] = float(value)
-
-                # The Stitch target can't handle NaN, and needs a None (null) instead
-                if math.isnan(result[key]):
-                    result[key] = None
-
-            # Not all fields are numeric fields. Just ignore those
-            except ValueError:
-                pass
-
-    return result
+# def strings_to_floats(row_dict):
+#     """
+#     Some imported rows contain floats represented as strings
+#     e.g. "0.00"
+#     Convert all of these to actual floats
+#     """
+#     result = copy.copy(row_dict)
+#     for key, value in result.items():
+#         if isinstance(value, str):
+#             try:
+#                 result[key] = float(value)
+#
+#                 # The Stitch target can't handle NaN, and needs a None (null) instead
+#                 if math.isnan(result[key]):
+#                     result[key] = None
+#
+#             # Not all fields are numeric fields. Just ignore those
+#             except ValueError:
+#                 pass
+#
+#     return result
 
 
 class RequestError(Exception):

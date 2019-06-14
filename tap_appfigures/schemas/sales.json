@@ -100,6 +100,19 @@
                 "null",
                 "integer"
             ]
+        },
+        "product_id": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "date": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
         }
     }
 }

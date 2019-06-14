@@ -6,6 +6,10 @@ from tap_appfigures.utils import date_to_str
 
 class ProductRecord(Record):
     DATE_FIELDS = ['release_date', 'added_date', 'updated_date']
+    # INT_FIELDS = ['id', 'store_id', 'source__external_account_id', 'parent_id', 'price__price']
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
     @property
     def product_date(self):
         if self.clean_data['updated_date']:
@@ -25,7 +29,7 @@ class ProductsStream(AppFiguresBase):
         with singer.metrics.Counter('record_count', {'endpoint': 'products'}) as counter:
 
             for product in product_response.json().values():
-                record = ProductRecord(product)
+                record = ProductRecord(product, self.schema)
                 product_ids.append(record.clean_data['id'])
 
                 # Only upsert messages which have changed

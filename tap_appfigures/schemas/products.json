@@ -8,7 +8,7 @@
         "id": {
             "type": [
                 "null",
-                "number"
+                "integer"
             ]
         },
         "name": {
@@ -96,6 +96,10 @@
             "type": [
                 "null",
                 "array"
+            ],
+            "items": [
+                "null",
+                "string"
             ]
         },
         "parent_id": {
@@ -108,12 +112,20 @@
             "type": [
                 "null",
                 "array"
+            ],
+            "items": [
+                "null",
+                "integer"
             ]
         },
         "features": {
             "type": [
                 "null",
                 "array"
+            ],
+            "items": [
+                "null",
+                "string"
             ]
         },
         "source": {
