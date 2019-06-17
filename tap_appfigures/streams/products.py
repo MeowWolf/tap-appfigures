@@ -6,9 +6,6 @@ from tap_appfigures.utils import date_to_str
 
 class ProductRecord(Record):
     DATE_FIELDS = ['release_date', 'added_date', 'updated_date']
-    # INT_FIELDS = ['id', 'store_id', 'source__external_account_id', 'parent_id', 'price__price']
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
 
     @property
     def product_date(self):

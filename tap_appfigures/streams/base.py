@@ -7,7 +7,7 @@ from copy import deepcopy
 
 import singer
 
-from tap_appfigures.utils import str_to_date, RequestError, dates_to_str, date_to_str
+from tap_appfigures.utils import str_to_date, RequestError, dates_to_str, date_to_str, ensure_timezone
 
 
 def stream_details_from_catalog(catalog, stream_name):
@@ -29,11 +29,17 @@ class Record:
     def __init__(self, raw_data, schema):
         self.raw_data = raw_data
         self.schema = schema
+
         self.clean_data = self.create_clean_data(raw_data)
         self.for_export = dates_to_str(self.clean_data)
 
     def create_clean_data(self, raw_data):
-        clean_data = singer.transform(data=raw_data, schema=self.schema)
+        clean_data = deepcopy(raw_data)
+
+        for date_field in self.DATE_FIELDS:
+            clean_data[date_field] = ensure_timezone(clean_data[date_field])
+
+        clean_data = singer.transform(data=clean_data, schema=self.schema)
 
         for date_field in self.DATE_FIELDS:
             clean_data[date_field] = str_to_date(clean_data[date_field])
