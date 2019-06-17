@@ -107,6 +107,48 @@
                 "integer"
             ]
         },
+        "app_store_views": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "unique_app_store_views": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "impressions": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "unique_impressions": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "uninstalls": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "avg_daily_active_devices": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "storefront": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
         "date": {
             "type": [
                 "null",

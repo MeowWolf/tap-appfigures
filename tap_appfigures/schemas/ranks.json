@@ -18,6 +18,12 @@
             ],
             "additional_properties": null,
             "properties": {
+                "store": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
                 "store_id": {
                     "type": [
                         "null",
