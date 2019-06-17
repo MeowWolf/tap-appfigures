@@ -10,20 +10,24 @@
                 "null",
                 "array"
             ],
-            "items": [
-                "null",
-                "integer"
-            ]
+            "items": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            }
         },
         "new": {
             "type": [
                 "null",
                 "array"
             ],
-            "items": [
-                "null",
-                "integer"
-            ]
+            "items": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            }
         },
         "average": {
             "type": [

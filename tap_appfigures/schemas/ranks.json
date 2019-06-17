@@ -16,39 +16,56 @@
                 "null",
                 "object"
             ],
+            "additional_properties": null,
             "properties": {
-                "store_id": [
-                    "null",
-                    "integer"
-                ],
-                "device": [
-                    "null",
-                    "string"
-                ],
-                "device_id": [
-                    "null",
-                    "integer"
-                ],
-                "name": [
-                    "string",
-                    "null"
-                ],
-                "subtype": [
-                    "string",
-                    "null"
-                ],
-                "id": [
-                    "null",
-                    "integer"
-                ],
-                "parent_id": [
-                    "null",
-                    "integer"
-                ],
-                "parent": [
-                    "null",
-                    "string"
-                ]
+                "store_id": {
+                    "type": [
+                        "null",
+                        "integer"
+                    ]
+                },
+                "device": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "device_id": {
+                    "type": [
+                        "null",
+                        "integer"
+                    ]
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "subtype": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": [
+                        "null",
+                        "integer"
+                    ]
+                },
+                "parent_id": {
+                    "type": [
+                        "null",
+                        "integer"
+                    ]
+                },
+                "parent": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
             }
         },
         "product_id": {

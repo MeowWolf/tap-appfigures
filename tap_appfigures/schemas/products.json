@@ -97,10 +97,12 @@
                 "null",
                 "array"
             ],
-            "items": [
-                "null",
-                "string"
-            ]
+            "items": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            }
         },
         "parent_id": {
             "type": [
@@ -113,20 +115,24 @@
                 "null",
                 "array"
             ],
-            "items": [
-                "null",
-                "integer"
-            ]
+            "items": {
+                "type": [
+                    "null",
+                    "integer"
+                ]
+            }
         },
         "features": {
             "type": [
                 "null",
                 "array"
             ],
-            "items": [
-                "null",
-                "string"
-            ]
+            "items": {
+                "type": [
+                    "null",
+                    "string"
+                ]
+            }
         },
         "source": {
             "type": [

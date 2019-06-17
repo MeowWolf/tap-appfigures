@@ -5,6 +5,18 @@
     ],
     "additional_properties": false,
     "properties": {
+        "product_id": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "store": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
         "crashes": {
             "type": [
                 "null",
