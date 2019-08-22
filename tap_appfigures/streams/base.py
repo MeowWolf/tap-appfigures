@@ -92,6 +92,7 @@ class AppFiguresBase:
         self.bookmark_date = str_to_date(bookmark_date)
 
         self.product_ids = []
+        self.product_types = []
 
     def sync(self):
         """
