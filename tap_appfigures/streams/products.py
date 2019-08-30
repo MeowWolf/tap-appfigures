@@ -23,11 +23,13 @@ class ProductsStream(AppFiguresBase):
 
         product_response = self.client.make_request("/products/mine")
         product_ids = []
+        product_types = []
         with singer.metrics.Counter('record_count', {'endpoint': 'products'}) as counter:
 
             for product in product_response.json().values():
                 record = ProductRecord(product, self.schema)
                 product_ids.append(record.clean_data['id'])
+                product_types.append(record.clean_data['type'])
 
                 # Only upsert messages which have changed
                 if record.product_date > self.bookmark_date:
@@ -42,3 +44,4 @@ class ProductsStream(AppFiguresBase):
         self.state = singer.write_bookmark(self.state, self.STREAM_NAME, 'last_record', date_to_str(max_product_date))
 
         self.product_ids = product_ids
+        self.product_types = product_types

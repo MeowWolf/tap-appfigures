@@ -66,6 +66,7 @@ class AppFiguresRunner:
             if stream.STREAM_NAME == 'products':
                 self.sync_stream(stream)
                 product_ids = stream.product_ids
+                product_types = stream.product_types
 
         # Sync all but the products
         for stream in self.streams:
@@ -73,4 +74,5 @@ class AppFiguresRunner:
                 continue
 
             stream.product_ids = product_ids
+            stream.product_types = product_types
             self.sync_stream(stream)

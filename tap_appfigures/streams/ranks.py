@@ -9,6 +9,7 @@ from tap_appfigures.utils import date_to_str
 class RankRecord(Record):
     INT_FIELDS = ['category__device_id', 'category__id', 'category__parent_id', 'product_id', 'position', 'delta']
 
+LOGGER = singer.get_logger()
 
 class RanksStream(AppFiguresBase):
     STREAM_NAME = 'ranks'
@@ -17,7 +18,14 @@ class RanksStream(AppFiguresBase):
     def do_sync(self):
         start_date = self.bookmark_date
         new_bookmark_date = self.bookmark_date
-        product_ids = ';'.join(str(id) for id in self.product_ids)
+
+        # Ranks cannot be fetched for inapp
+        product_ids =','.join([str(id) for i, id in enumerate(self.product_ids) if self.product_types[i] != "inapp"])
+
+        if any([product_type == "inapp" for product_type in self.product_types]):
+            LOGGER.info("Skipping id={} since ranks cannot be fetched for inapp purchases."
+                        .format(','.join([str(id) for i, id in enumerate(self.product_ids)
+                                          if self.product_types[i] == "inapp"])))
 
         while start_date.date() <= date.today():
             end_date = start_date + timedelta(days=28)
@@ -28,7 +36,6 @@ class RanksStream(AppFiguresBase):
             )
 
             data = self.client.make_request(uri).json()
-
             rank_dates = data['dates']
             rank_data = data['data']
 
